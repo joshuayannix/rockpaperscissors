@@ -15,31 +15,34 @@ const getComputerChoice = () => {
 }
 
 const convertToWord = letter => {
-  if(letter === 'r') return 'Rock'
+  if (letter === 'r') return 'Rock'
   if (letter === 'p') return 'Paper'
   return 'Scissors'
 }
 
 const win = (userChoice, computerChoice) => {
   userScore++
-  computerScore--
   userScore_span.innerHTML = userScore;
   computerScore_span.innerHTML = computerScore;
-  result_p.innerHTML = convertToWord(userChoice) + ' beats ' + convertToWord(computerChoice) + '. You win!'
+  const smallUserWord = 'user'.fontsize(3).sub()
+  const smallCompWord = 'comp'.fontsize(3).sub()
+  result_p.innerHTML = `${convertToWord(userChoice)}${smallUserWord} beats ${convertToWord(computerChoice)}${smallCompWord}. You win!`
+
 }
 
 const lose = (userChoice, computerChoice) => {
-  userScore--
   computerScore++
   userScore_span.innerHTML = userScore;
   computerScore_span.innerHTML = computerScore;
-  result_p.innerHTML = 'You lose! ' + convertToWord(computerChoice) + ' beats ' + convertToWord(userChoice)
+  const smallUserWord = 'user'.fontsize(3).sub()
+  const smallCompWord = 'comp'.fontsize(3).sub()
+  result_p.innerHTML = `You lose! ${convertToWord(userChoice)}${smallUserWord} loses to ${convertToWord(computerChoice)}${smallCompWord}.`
 }
 
-const draw = (userChoice, computerChoice) => {
+const draw = (computerChoice) => {
   userScore_span.innerHTML = userScore;
   computerScore_span.innerHTML = computerScore;
-  result_p.innerHTML = 'Draw...' + convertToWord(computerChoice) + ' is the same as ' + convertToWord(userChoice)
+  result_p.innerHTML = 'Draw...you both got ' + convertToWord(computerChoice)
 }
 
 const game = (userChoice) => {
